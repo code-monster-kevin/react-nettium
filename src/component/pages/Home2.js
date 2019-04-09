@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../store/actions';
-import W3Banner from '../general/W3Banner';
-import W3CardItem from '../general/W3CardItem';
+import W3Banner2 from '../general/W3Banner2';
+import W3CardItem2 from '../general/W3CardItem2';
 import W3Content from '../general/W3Content';
+import W3Balance from '../general/W3Balance';
 import mountainImg from '../../assets/mountains.jpg';
 import natureImg from '../../assets/nature.jpg';
 import lightsImg from '../../assets/lights.jpg';
@@ -37,24 +37,20 @@ const cardItems = [
 
 class Home2 extends React.Component {
   render() {
-    var selectedIndex = this.props.selectedIndex ? this.props.selectedIndex : cardItems[0].id;
-    var selectedImage = this.props.bannerImage ? this.props.bannerImage : cardItems[0].image;
-    var selectedCaption = this.props.bannerCaption ? this.props.bannerCaption : cardItems[0].alt;
-
     return (
       <div>
-        <W3Banner alt="top banner" image={selectedImage} caption={selectedCaption} />
+        <W3Balance />
+        <W3Banner2 />
         <W3Content>
           {cardItems.map(item => (
-            <W3CardItem
+            <W3CardItem2
               key={item.id}
               id={item.id}
-              isSelected={item.id === selectedIndex}
               image={item.image}
               alt={item.alt}
               title={item.title}
               description={item.description}
-              updateBanner={this.props.updateBanner}
+              isSelected={item.id === this.props.selectedIndex}
             />
           ))}
         </W3Content>
@@ -65,18 +61,8 @@ class Home2 extends React.Component {
 
 const mapStateToProps = store => {
   return {
-    selectedIndex: store.banner.selectedIndex,
-    bannerImage: store.banner.bannerImage,
-    bannerCaption: store.banner.bannerCaption
+    selectedIndex: store.banner.selectedIndex
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateBanner: (index, image, caption) => dispatch(actions.updateBanner(index, image, caption))
-  };
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home2);
+export default connect(mapStateToProps)(Home2);

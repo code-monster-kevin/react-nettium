@@ -14,7 +14,17 @@ import '../general/w3.css';
   Moving the code into components
 */
 class App2 extends Component {
+  constructor(props) {
+    super(props);
+    console.log('Constructor');
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
   render() {
+    console.log('Render');
     return (
       <div className="w3-light-grey w3-content">
         <W3TopBar>

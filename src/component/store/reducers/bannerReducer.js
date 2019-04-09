@@ -1,10 +1,11 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../utils/common';
+import mountainImg from '../../../assets/mountains.jpg';
 
 const initialState = {
-  selectedIndex: null,
-  bannerImage: null,
-  bannerCaption: null
+  selectedIndex: 1,
+  bannerImage: mountainImg,
+  bannerCaption: 'Mount Everest'
 };
 
 const setBanner = (state, action) => {
